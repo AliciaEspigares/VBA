@@ -1,0 +1,71 @@
+    Case "Español"
+        Worksheets(Worksheets.Count).Range("B44") = "MONTADOR"
+        Worksheets(Worksheets.Count).Range("B77") = "Observaciones: Montaje incluido"
+
+    Case Else
+        Worksheets(Worksheets.Count).Range("B44") = "MONTEUR"
+        Worksheets(Worksheets.Count).Range("B77") = "Observations: Montage inclus"
+
+    End Select
+  
+    Range(Cells(44, 2), Cells(44, 7)).Borders(xlEdgeBottom).Color = RGB(0, 0, 0)
+    Worksheets(Worksheets.Count).Range("E44") = Worksheets("Precio productos").Range("F35")
+    Worksheets(Worksheets.Count).Range("F44") = Worksheets("Precio productos").Range("H35")
+    Worksheets(Worksheets.Count).Range("G44") = Worksheets("Precio productos").Range("I35")
+    
+
+End If
+
+
+Unload Me
+End If
+
+
+
+End Sub
+
+
+Private Sub LabelValidez_Click()
+
+End Sub
+
+Private Sub Salir_Click()
+
+Unload Me 'Salir del formulario
+
+End Sub
+'Te dice el nombre de la factura que tiene que crear
+Public Function Nombre_Factura() As String
+    For Cont = 1 To 20
+        NombreFactura = "Factura " & Cont
+        'Worksheets("Prueba").Range("D" & Cont).Value = "Probamos con el nombre: " & NombreFactura
+        For i = 1 To Worksheets.Count
+            If Worksheets(i).Name = NombreFactura Then
+                'Worksheets("Prueba").Range("C" & i).Value = "EXISTE " & NombreFactura
+                existe = True
+                Exit For
+            Else
+                'Worksheets("Prueba").Range("C" & i).Value = "NO EXISTE " & NombreFactura
+                existe = False
+            End If
+        Next
+        If Not existe Then
+            'Worksheets("Prueba").Range("F1").Value = "NO EXISTE " & NombreFactura
+            Exit For
+        End If
+        
+    Next
+    Nombre_Factura = NombreFactura
+    Exit Function
+    
+    
+End Function
+'Añade los idiomas a la lista de idiomas
+Private Sub UserForm_Initialize()
+
+Idiomas_box.AddItem ("Francés")
+Idiomas_box.AddItem ("Inglés")
+Idiomas_box.AddItem ("Español")
+Fecha = Date
+
+End Sub
